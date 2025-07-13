@@ -47,9 +47,7 @@ namespace LinqProblems
              * Yasmin Abdel-Rahman
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+            //The Same as Problem01/Program.cs
 
         }
     }
