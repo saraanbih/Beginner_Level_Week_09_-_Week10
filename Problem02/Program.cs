@@ -8,13 +8,13 @@ namespace LinqProblems
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int GroupNumber { get; set; }
+        public string Email { get; set; }
 
-        public Student(string firstName, string lastName, int groupNumber)
+        public Student(string firstName, string lastName, string email)
         {
             FirstName = firstName;
             LastName = lastName;
-            GroupNumber = groupNumber;
+            Email = email;
         }
 
         public override string ToString()
@@ -29,21 +29,21 @@ namespace LinqProblems
         {
             List<Student> students = new List<Student>
             {
-                new Student("Ahmed", "Hassan", 1),
-                new Student("Omar", "Mahmoud", 2),
-                new Student("Mohamed", "Ali", 1),
-                new Student("Fatma", "Ibrahim", 2),
-                new Student("Yasmin", "Abdel-Rahman", 2)
+                new Student("Ahmed", "Hassan", "ahmed.hassan@gmail.com"),
+                new Student("Omar", "Mahmoud", "omar.mahmoud@yahoo.com"),
+                new Student("Mohamed", "Ali", "mohamed.ali@gmail.com"),
+                new Student("Fatma", "Ibrahim", "fatma.ibrahim@hotmail.com"),
+                new Student("Yasmin", "Abdel-Rahman", "yasmin.abdel@gmail.com")
             };
 
             /*
-             * PROBLEM 1: Students by Group
+             * PROBLEM 2: Filter Students by Email Domain
              * 
-             * Task: Print all students from group number 2. Use LINQ. Order the students by FirstName.
+             * Task: Print all students that have email @gmail.com in the order of appearance. Use LINQ.
              * 
              * Expected Output:
-             * Fatma Ibrahim
-             * Omar Mahmoud
+             * Ahmed Hassan
+             * Mohamed Ali
              * Yasmin Abdel-Rahman
              */
 
