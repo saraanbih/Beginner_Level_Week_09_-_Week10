@@ -47,10 +47,20 @@ namespace LinqProblems
              * Yasmin Abdel-Rahman
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+            //My Solution
+            var AllStudentsFromGroup2_1 = students.Where(s => s.GroupNumber == 2).OrderBy(s => s.FirstName);
+            foreach (var student1 in AllStudentsFromGroup2_1) // Renamed 'student' to 'student1'
+                Console.WriteLine(student1);
 
+            //another solution
+            var AllStudentsFromGroup2_2 = from student in students
+                                          where student.GroupNumber == 2 // Fixed incorrect syntax
+                                          orderby student.FirstName // Fixed incorrect syntax
+                                          select student;
+            foreach (var student2 in AllStudentsFromGroup2_2) // Renamed 'student' to 'student2'
+                Console.WriteLine(student2);
+
+            Console.ReadKey();
         }
     }
 }

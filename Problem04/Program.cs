@@ -28,15 +28,15 @@ namespace LinqProblems
         static void Main(string[] args)
         {
             List<Student> students = new List<Student>
-            {
-                new Student("Ahmed", "Hassan", 1),
-                new Student("Omar", "Mahmoud", 2),
-                new Student("Mohamed", "Ali", 1),
-                new Student("Fatma", "Ibrahim", 2),
-                new Student("Yasmin", "Abdel-Rahman", 2),
-                new Student("Nour", "El-Sayed", 3),
-                new Student("Khaled", "Farouk", 3)
-            };
+                {
+                    new Student("Ahmed", "Hassan", 1),
+                    new Student("Omar", "Mahmoud", 2),
+                    new Student("Mohamed", "Ali", 1),
+                    new Student("Fatma", "Ibrahim", 2),
+                    new Student("Yasmin", "Abdel-Rahman", 2),
+                    new Student("Nour", "El-Sayed", 3),
+                    new Student("Khaled", "Farouk", 3)
+                };
 
             /*
              * PROBLEM 4: Count Students by Group
@@ -49,10 +49,23 @@ namespace LinqProblems
              * Group 3: 2 students
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+            var GroupCounts = students
+                .GroupBy(s => s.GroupNumber)
+                .Select(g => new { GroupNumber = g.Key, Count = g.Count() })
+                .OrderBy(g => g.GroupNumber);
 
+            foreach (var group in GroupCounts)
+                Console.WriteLine($"Group {group.GroupNumber}: {group.Count} students");
+
+            //another way to do it
+            var GroupCounts2 = students.ToLookup(s => s.GroupNumber)
+                               .Select(g => new { GroupNumber = g.Key, Count = g.Count() })
+                               .OrderBy(g => g.GroupNumber);
+
+            foreach (var group in GroupCounts2)
+                Console.WriteLine($"Group {group.GroupNumber}: {group.Count} students");
+
+            Console.ReadKey();
         }
     }
 }

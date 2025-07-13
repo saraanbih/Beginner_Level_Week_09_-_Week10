@@ -49,10 +49,21 @@ namespace LinqProblems
              * Yasmin Abdel-Rahman (Length: 6)
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+            var StudentsWithLongFirstName = students.Where(s => s.FirstName.Length > 5).
+                OrderByDescending(s => s.FirstName.Length);
+            foreach (var student in StudentsWithLongFirstName)
+                Console.WriteLine($"{student} (Length: {student.FirstName.Length})");
 
+            //another solution
+            var StudentsWithLongFirstName2 = from student in students
+                                             where student.FirstName.Length > 5
+                                             orderby student.FirstName.Length descending
+                                             select student;
+            foreach (var student2 in StudentsWithLongFirstName2)
+                Console.WriteLine($"{student2} (Length: {student2.FirstName.Length})");
+            Console.ReadKey();
         }
     }
 }
+
+
