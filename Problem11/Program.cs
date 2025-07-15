@@ -73,9 +73,32 @@ namespace LinqProblems
              * Yasmin Abdel-Rahman - Physics (Dr. Khaled Farouk)
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+            var result = students.Join(courses, s => s.CourseId, c => c.Id,
+                         (s, c) => new
+                         {
+                             CourseName = c.Name,
+                             StudentName = s.FirstName + " " + s.LastName,
+                             InstructorName = c.Instructor
+                         }).OrderBy(x => x.CourseName)
+                         .ThenBy(x => x.StudentName);
+            foreach (var student in result)
+                Console.WriteLine($"{student.StudentName} - {student.CourseName} ({student.InstructorName})");
+
+            //another way to solve it
+            var result2 = from s in students
+                          join c in courses on s.CourseId equals c.Id
+                          orderby c.Name, s.FirstName
+                          select new
+                          {
+                              CourseName = c.Name,
+                              StudentName = s.FirstName + " " + s.LastName,
+                              InstructorName = c.Instructor
+                          };
+            foreach (var student in result2)
+                Console.WriteLine($"{student.StudentName} - {student.CourseName} ({student.InstructorName})");
+
+            Console.ReadKey();
+                           
 
 
 

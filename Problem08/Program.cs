@@ -43,7 +43,7 @@ namespace LinqProblems
             // PROBLEM 8: Weak Students by Department
             // Task: Find students who have at least 2 marks ≤ 3 AND are from "Computer Science" or "Engineering" departments.
             // Display results grouped by department and sorted by student name. Use LINQ.
-        
+
             /* 
              Expected Output:
              Department: Computer Science
@@ -53,9 +53,19 @@ namespace LinqProblems
              Department: Engineering
              - Yasmin Abdel-Rahman (Engineering)
             */
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+
+            var WeakStudentsByDepartment = students
+                .Where(s => s.Marks.Count(m => m <= 3) >= 2 &&
+                (s.Department == "Computer Science" || s.Department == "Engineering"))
+                .GroupBy(s => s.Department)
+                .OrderBy(g => g.Key);
+            foreach (var item in WeakStudentsByDepartment){
+                Console.WriteLine($"Department: {item.Key}");
+                foreach (var student in item.OrderBy(s => s.FirstName + " " + s.LastName))
+                    Console.WriteLine($"- {student}");
+            }
+            
+            Console.ReadKey();
 
         }
     }

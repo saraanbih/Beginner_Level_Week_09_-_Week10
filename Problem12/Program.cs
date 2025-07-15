@@ -63,10 +63,27 @@ namespace LinqProblems
              * Mohamed Ali
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+             var Intersection = cairoStudents.Intersect(alexandriaStudents);
+             Console.WriteLine("Intersection (Cairo ∩ Alexandria):");
+             foreach (var student in Intersection) 
+                 Console.WriteLine(student);
 
+             var Union = cairoStudents.Union(alexandriaStudents).Union(gizaStudents);
+             Console.WriteLine("\nUnion (All unique students):");
+             foreach (var student in Union) 
+                 Console.WriteLine(student);
+
+             var CairoExceptAlexandria = cairoStudents.Except(alexandriaStudents);
+             Console.WriteLine("\nCairo Except Alexandria:");
+             foreach (var student in CairoExceptAlexandria) 
+                 Console.WriteLine(student);
+
+             var RemoveDuplicates = cairoStudents.Distinct();
+             Console.WriteLine("\nCairo Students without duplicates:");
+             foreach (var student in RemoveDuplicates) 
+                 Console.WriteLine(student);
+
+            Console.ReadKey();
         }
     }
 }

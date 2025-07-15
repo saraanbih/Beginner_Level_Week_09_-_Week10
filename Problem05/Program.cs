@@ -46,10 +46,15 @@ namespace LinqProblems
              * Fatma Ibrahim
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+            var ExcellentStudents = students.Where(s => s.Marks.Any(m => m == 6));
+            //another way to write it:
+            var ExcellentStudents2 = from s in students
+                                     where s.Marks.Any(m => m == 6)
+                                     select s;
+            foreach (var student in ExcellentStudents)
+                Console.WriteLine(student);
 
+            Console.ReadKey();
         }
     }
 }

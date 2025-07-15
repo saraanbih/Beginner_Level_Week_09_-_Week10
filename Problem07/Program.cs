@@ -48,12 +48,15 @@ namespace LinqProblems
              * Expected Output:
              * 6 6 6 5
              * 3 4 5 6
-             * 5 3 4 2
              */
-
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+             
+             var EnrolledStudetns = students
+                .Where(s => s.FacultyNumber.Substring(4, 2) == "14" || s.FacultyNumber.Substring(4, 2) == "15")
+                .Select(s => s.Marks);
+            foreach (var marks in EnrolledStudetns)
+                Console.WriteLine(string.Join(" ", marks));
+            
+            Console.ReadKey();
 
         }
     }

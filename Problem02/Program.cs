@@ -47,7 +47,15 @@ namespace LinqProblems
              * Yasmin Abdel-Rahman
              */
 
-            //The Same as Problem01/Program.cs
+            var result = students.Where(s => s.Email.EndsWith("@gmail.com"));
+            //another solution
+            var result2 = from s in students
+                          where s.Email.EndsWith("@gmail.com")
+                          select s;
+            foreach (var student in result)    
+                Console.WriteLine(student);
+
+            Console.ReadKey();
 
         }
     }

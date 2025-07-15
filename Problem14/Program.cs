@@ -57,11 +57,24 @@ namespace LinqProblems
              * Cairo Total Grades: 982
              * All Names: Ahmed Hassan, Fatma Ibrahim, Omar Mahmoud, Yasmin Abdel-Rahman, Mohamed Ali, Nour El-Sayed
              */
+             
+             var totalStudents = students.Count;
+            Console.WriteLine($"Total Students: {totalStudents}");
+            var overallAverageGrade = students.SelectMany(s => s.Grades).Average();
+            Console.WriteLine($"\nOverall Average Grade: {overallAverageGrade:F1}");
+            var highestGrade = students.SelectMany(s => s.Grades).Max();
+            Console.WriteLine($"\nHighest Grade: {highestGrade}");
+            var lowestGrade = students.SelectMany(s => s.Grades).Min();
+            Console.WriteLine($"\nLowest Grade: {lowestGrade}");
+            var cairoTotalGrades = students.Where(s => s.City == "Cairo")
+                                            .SelectMany(s => s.Grades)
+                                            .Sum();
+            Console.WriteLine($"\nCairo Total Grades: {cairoTotalGrades}");
+            var AllNames = students.Select(s => s.ToString())
+                                            .Aggregate((current, next) => current + ", " + next);
+            Console.WriteLine($"\nAll Names: {AllNames}");
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
-
+            Console.ReadKey();
         }
     }
 }

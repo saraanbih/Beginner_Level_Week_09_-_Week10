@@ -64,10 +64,28 @@ namespace LinqProblems
              *   Fatma Ibrahim - Average: 80.0
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
-
+            var TopStudentsByCity = students
+                .GroupBy(s => s.City)
+                .OrderBy(g => g.Key)
+                .Select(g => new
+                {
+                    City = g.Key,
+                    TopStudents = g.OrderByDescending(s => s.AverageGrade).Take(2)
+                    .Select(s => new
+                    {
+                        Name = s.ToString(),
+                        AverageGrade = Math.Round(s.AverageGrade, 1)
+                    })
+                });
+            foreach (var cityGroup in TopStudentsByCity){
+                Console.WriteLine($"{cityGroup.City}:");
+                foreach (var student in cityGroup.TopStudents)
+                {
+                    Console.WriteLine($"  {student.Name} - Average: {student.AverageGrade}");
+                }
+                Console.WriteLine();
+            }
+            Console.ReadKey();
         }
     }
 }

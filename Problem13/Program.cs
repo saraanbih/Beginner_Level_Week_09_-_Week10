@@ -59,10 +59,20 @@ namespace LinqProblems
              * All have grades: True
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+             var firstWithA = students.FirstOrDefault(s => s.FirstName.StartsWith("A"));
+             Console.WriteLine($"First with 'A': {firstWithA}");
+             var lastOlderThan20 = students.LastOrDefault(s => s.Age > 20);
+             Console.WriteLine($"\nLast older than 20: {lastOlderThan20}");
+             var studentAtIndex2 = students.ElementAtOrDefault(2);
+             Console.WriteLine($"\nStudent at index 2: {studentAtIndex2}");
+             var singleAge19 = students.SingleOrDefault(s => s.Age == 19);
+             Console.WriteLine($"\nSingle student age 19: {singleAge19}");
+             var anyAge19 = students.Any(s => s.Age == 19);
+             Console.WriteLine($"\nAny age 19: {anyAge19}");
+             var allHaveGrades = students.All(s => s.Grades.Any());
+             Console.WriteLine($"\nAll have grades: {allHaveGrades}");
 
+            Console.ReadKey();
         }
     }
 }

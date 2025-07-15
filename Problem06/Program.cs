@@ -46,10 +46,15 @@ namespace LinqProblems
              * Yasmin Abdel-Rahman
              */
 
-            // ============================================
-            // YOUR SOLUTION HERE
-            // ============================================
+            var WeakStudents = students.Where(s => s.Marks.Count(m => m <= 3) >= 2);
+            // Another way to write it:
+            var WeakStudents2 = from s in students
+                                where s.Marks.Count(m => m <= 3) >= 2
+                                select s;
+            foreach (var student in WeakStudents)
+                Console.WriteLine(student);
 
+            Console.ReadKey();
         }
     }
 }
